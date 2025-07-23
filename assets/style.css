@@ -4,13 +4,15 @@
    src: url('Sahel.ttf') format('woff');
    }
    /*-----------------*/
-  .header{background:#f7f7f7;padding:20px 30px 20px 30px;border-bottom:1px solid #bfc2c5;text-align:left;font-size:18px;}
-  .header a{background:#00077b;color:#fff;font-size:12px;padding:4px 7px 4px 7px;border-radius:5px;font-weight:bold;text-decoration:none;}
-  .header a:hover{background:#4c51a2;}
+  header{background:#f7f7f7;padding:20px 30px 20px 30px;border-bottom:1px solid #bfc2c5;text-align:left;font-size:18px;}
+  header a{background:#00077b;color:#fff;font-size:12px;padding:4px 7px 4px 7px;border-radius:5px;font-weight:bold;text-decoration:none;}
+  header a:hover{background:#4c51a2;}
   /*-----------------*/
-  .text{max-width:850px;padding:10px;margin:15px 0px 15px 0px;text-align:right;}
+  main{max-width:850px;padding:10px;margin:15px 0px 15px 0px;text-align:right;}
   t{margin:0px;}
   m{font-family:monospace;color:#d6336c;font-weight:bold;}
+  .link{color:#000;text-decoration:none;}
+  .link:visited{color:#000;}
 
   pre.code{background:#f7f7f7;padding:15px 20px 15px 20px;margin-top:0px;border:1px solid #bfc2c5;border-radius:0px 0px 5px 5px;font-size:13px;direction:ltr;text-align:left;}
   .run{background:#f7f7f7;padding:10px;border:1px solid #bfc2c5;border-bottom:none;border-radius:5px 5px 0px 0px;font-size:13px;direction:ltr;text-align:left;}
@@ -20,9 +22,9 @@
   .topic{background:#f7f7f7;padding:10px 15px 10px 15px;border-radius:5px;border:1px solid #bfc2c5;margin-bottom:10px;color:#00077b;}
   .topic a{color:#000;text-decoration:none;}
   /*-----------------*/
-  .footer{background:#f7f7f7;color:#4e4e4e;padding:20px 30px 20px 30px;text-align:left;font-size:13px;border-top:1px solid #bfc2c5;} 
-  .footer a{color:#4e4e4e;}
-  .footer a:hover{text-decoration:none;}
+  footer{background:#f7f7f7;color:#4e4e4e;padding:20px 30px 20px 30px;text-align:left;font-size:13px;border-top:1px solid #bfc2c5;} 
+  footer a{color:#4e4e4e;}
+  footer a:hover{text-decoration:none;}
   /*-----------------*/
   .np{color:#000;border:1px solid #bfc2c5;border-radius:5px;padding:5px 10px 5px 10px;text-decoration:none;}
   .np img{vertical-align:middle;}

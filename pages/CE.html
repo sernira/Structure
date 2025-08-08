@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+ <title>CE Structure</title>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&family=JetBrains+Mono&display=swap" rel="stylesheet">
+ <style>
+  *{box-sizing:border-box;}
+
+  body{margin:0;font-family:'Vazirmatn', sans-serif;display:flex;flex-direction:column;height:100vh;background:#fff;}
+
+  header{background:#fff;padding:10px 15px;display:flex;align-items:center;gap:10px;border-bottom:1px solid#ccc;}
+  header input,header button{font-family:inherit;font-size:13px;padding:5px 10px;border:1px solid#bbb;border-radius:5px;background:#fff;}
+  header button{cursor:pointer;}
+  header button:hover{background:#eaeaea;}
+
+  .container{display:flex;flex:1;overflow:hidden;}
+  .editor-container{flex:1;display:flex;flex-direction:column;border-right:1px solid #ccc;}
+  .editor-wrapper{display:flex;flex:1;overflow:hidden;}
+
+  .gray-strip{width: 5px;background: #ddd;user-select: none;border-right: 1px solid #ccc;}
+
+  #editor{flex:1;font-family:'JetBrains Mono', monospace;font-size:13px;line-height:1.5;padding:10px;border:none;outline:none;resize:none;overflow-y:auto;background:#fff;color:#000;white-space:pre;tab-size:4;}
+  #preview {border:none;height:100%;background:#fff;}
+
+  @media (max-width: 600px) { header button, header input{font-size:10px;}}
+  </style>
+</head>
+<body>
+
+<header>
+<button id="saveBtn">Save</button>
+<button id="clearBtn">Delete</button>
+<button id="runNewTabBtn">New tab</button>
+<input type="number" id="widthInput" min="10" max="90" value="50">
+<a href="../index.html" style="margin-left:auto;text-decoration:none;color:#00077b;font-size:20px;">Structure</a>
+</header>
+
+<div class="container">
+  <div class="editor-container">
+    <div class="editor-wrapper">
+     <div class="gray-strip"></div>
+     <textarea id="editor" spellcheck="false"></textarea>
+    </div>
+  </div>
+    <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+</div>
+
+  <script>
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+    const widthInput = document.getElementById('widthInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const runNewTabBtn = document.getElementById('runNewTabBtn');
+
+    window.onload = () => {
+      runCode();               
+      updatePreviewWidth(); 
+    };
+
+    widthInput.oninput = updatePreviewWidth;
+    editor.addEventListener('input', runCode);
+
+    saveBtn.onclick = () => {
+      const blob = new Blob([editor.value], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'code.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    clearBtn.onclick = () => {
+      if (confirm("آیا مطمئن هستید؟")) {
+        editor.value = '';
+        runCode();
+      }
+    };
+
+    runNewTabBtn.onclick = () => {
+      const code = editor.value;
+      const win = window.open();
+      win.document.open();
+      win.document.write(code);
+      win.document.close();
+    };
+
+    function updatePreviewWidth() {
+      const val = Math.min(90, Math.max(10, parseInt(widthInput.value) || 50));
+      preview.style.width = `${val}%`;
+    }
+
+    function runCode() {
+      const doc = preview.contentDocument || preview.contentWindow.document;
+      doc.open();
+      doc.write(editor.value);
+      doc.close();
+    }
+  </script>
+</body>
+</html>

@@ -1,34 +1,208 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Structure</title>
+ <title>ویژگی‌های عمومی و اسکریپت‌ها</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+ <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="header"><a href="../index.html" target="_blank">صفحه ی اصلی</a>&nbsp;&nbsp;&nbsp;Structure</div>
+<header><a href="" target="_blank">Structure</a><code>&nbsp;>&nbsp;html</code></header>
 
-<center>
-<div class="text">
+<main>
+<div class="alert">این متن هنوز کامل نیست و در حال بروزرسانی است. نسخه‌ی نهایی پس از تکمیل در دسترس قرار خواهد گرفت.</div>
+<h1>ویژگی‌های عمومی و اسکریپت‌ها</h1>
+<t>در توسعه وب مدرن <b>ویژگی‌های عمومی (Global Attributes)</b> و مدیریت اسکریپت‌ها به عنوان پایه‌های سازمان‌دهی، کنترل و تعامل با صفحه، نقش محوری ایفا می‌کنند. این فصل به بررسی جامع و تخصصی ویژگی‌های جهانی قابل استفاده در تمام عناصر HTML استفاده از ویژگی‌های سفارشی (<m>data-*</m>) و مدیریت اسکریپت‌ها و رویدادها در سطح HTML می‌پردازد.  
+    هدف این فصل، ایجاد صفحات وب هوشمندانه، قابل تنظیم، سازگار با ابزارهای دسترسی و پایدار در برابر تغییرات پویا است.</t>
 
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+<br><br><h2>10.1 ویژگی‌های جهانی برای تمام تگ‌ها</h2>
+<h3>10.1.1 کنترل کلی و معنایی</h3>
+<t>هر عنصر HTML می‌تواند از مجموعه‌ای از <b>ویژگی‌های جهانی (Global Attributes)</b> استفاده کند که برای تمام تگ‌ها قابل اعمال هستند. این ویژگی‌ها بدون نیاز به تعریف مجدد به مرورگر، موتورهای جستجو و ابزارهای دسترسی کمک می‌کنند تا ساختار، رفتار و معنای صفحه را به درستی درک کنند.</t><br><br>
+<table>
+ <tr>
+  <td><m>class</m></td>
+  <td>مشخص کردن کلاس‌های CSS برای استایل‌دهی</td>
+ </tr>
+
+ <tr>
+  <td><m>id</m></td>
+  <td>شناسه منحصر به فرد برای تگ (برای جستجو، اسکرول، JavaScript)</td>
+ </tr>
+
+ <tr>
+  <td><m>hidden</m></td>
+  <td>مخفی کردن تگ از نمایش (بدون حذف از DOM)</td>
+ </tr>
+
+ <tr>
+  <td><m>lang</m></td>
+  <td>زبان محتوا مثلا (<m>fa</m> - <m>en</m>)</td>
+</tr>
+
+ <tr>
+  <td><m>tabindex</m></td>
+  <td>ترتیب ورود کاربر به عناصر با کلید Tab</td>
+ </tr>
+
+ <tr>
+  <td><m>title</m>></td>
+  <td>متن توضیحی (نمایش در هاور)</td>
+ </tr>
+
+ <tr>
+  <td><m>style</m></td>
+  <td>استایل داخلی (مستقیم)</td>
+ </tr>
+
+ <tr>
+  <td>data-*</td>
+  <td>ویژگی‌های سفارشی برای ذخیره داده در متون HTML</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;div 
+ id="user-card"
+ class="card profile"
+ lang="fa"
+ tabindex="0"
+ title="اطلاعات کاربر"
+ hidden
+ data-user-id="12345"
+&gt;
+ &lt;p&gt;نام: محمد احمدی&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<ul>
+  <li><m>hidden</m> فقط از نمایش محتوا جلوگیری می‌کند اما عنصر همچنان در DOM وجود دارد.</li>
+  <li><m>tabindex="-1"</m> برای غیرفعال کردن از دسترسی با Tab استفاده می‌شود.</li>
+  <li><m>tabindex="0"</m> برای فعال‌سازی از طریق Tab.</li>
+  <li><m>lang</m> به موتورهای جستجو و ابزارهای خواندن متن کمک می‌کند تا لحن و تلفظ را به درستی تشخیص دهند.</li>
+</ul>
+  
+<br><h2>10.2 استفاده از ویژگی‌های سفارشی (<m>data-*</m>): ذخیره‌سازی داده در HTML</h2>
+<h3>10.2.1 تعریف ویژگی‌های سفارشی</h3>
+<ul>
+  <li>ویژگی‌های با پیشوند data**-** برای ذخیره داده‌های شخصی‌سازی‌شده در HTML استفاده می‌شوند.</li>
+  <li>این داده‌ها به صورت خودکار در **dataset** در $JavaScript$ قابل دسترسی هستند.</li>
+</ul>
+<pre class="code">
+&lt;button 
+ id="btn-action" 
+ data-action="delete" 
+ data-user-id="789" 
+ data-confirm="آیا مطمئن هستید؟"
+&gt;
+ حذف کاربر
+&lt;/button&gt;
+</pre>
+<t>ویژگی‌های <m>data-*</m> فقط برای داده‌های فنی (نه محتوای نمایشی) استفاده شوند. نباید از آن‌ها برای نمایش محتوا استفاده کرد.</t>
+<h3>10.2.2 دسترسی به داده‌ها در JavaScript</h3>
+<t>با استفاده از <m>element.dataset</m> می‌توان به مقادیر <m>data-*</m> دسترسی پیدا کرد.</t>
+<pre class="code">
+&lt;script&gt;
+ const button = document.getElementById("btn-action");
+    
+ button.addEventListener("click", function () {
+  const action = this.dataset.action;        // "delete"
+  const userId = this.dataset.userId;        // "789"
+  const confirmMsg = this.dataset.confirm;   // "آیا مطمئن هستید؟"
+    
+  if (confirm(confirmMsg)) {
+   console.log(`عملیات ${action} برای کاربر ${userId}`);
+   // اجرای عملیات
+  }
+});
+&lt;/script&gt;
+</pre>
+<ul>
+  <li><m>dataset</m> به صورت <m>camelCase</m> نام‌گذاری می‌شود (مثلاً data-user-id → dataset.userId).</li>
+  <li>این روش به جای استفاده از <m>getAttribute()</m> مختصرتر و ایمن‌تر است.</li>
+  <li>داده‌های data<m>-</m> در سمت کلاینت ذخیره می‌شوند و باید در سمت سرور مجدداً اعتبارسنجی شوند.</li>
+  <li>از data<m>-</m> برای داده‌های حساس (مثل رمز عبور) خودداری کنید.</li>
+</ul>  
+<br><h2>10.3 اسکریپت‌نویسی و رویدادها در HTML: تعامل پویا</h2>
+<h3>10.3.1 <m>&lt;script&gt;</m>: بارگذاری و اجرای کدهای JavaScript</h3>
+<table>
+ <tr>
+  <td><m>src</m></td>
+  <td>مسیر فایل JS (خارجی)</td>
+ </tr>
+
+ <tr>
+  <td><m>async</m></td>
+  <td>بارگذاری غیرهمزمان (برای فایل‌هایی که وابستگی ندارند)</td>
+ </tr>
+
+ <tr>
+  <td><m>defer</m></td>
+  <td>بارگذاری و اجرای بعد از تحلیل DOM</td>
+ </tr>
+
+ <tr>
+  <td><m>type="module"</m></td>
+  <td>استفاده از ES Modules (ESM)</td>
+ </tr>
+
+ <tr>
+  <td><m>nomodule</m></td>
+  <td>برای مرورگرهای قدیمی (fallback)</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;script src="app.js" async&gt;&lt;/script&gt;
+&lt;script src="analytics.js" defer&gt;&lt;/script&gt;
+&lt;script type="module" src="main.mjs"&gt;&lt;/script&gt;
+&lt;script nomodule src="legacy.js"&gt;&lt;/script&gt;
+</pre>
+<ul>
+  <li><m>async</m> مناسب برای کدهای مستقل (مثلاً تحلیل، تبلیغات).</li>
+  <li><m>defer</m> مناسب برای کدهای وابسته به DOM (مثلاً اسکریپت‌های اصلی).</li>
+  <li><m>type="module"</m> امکان استفاده از import/export را فراهم می‌کند.</li>
+</ul>
+<t><m>async</m> و <m>defer</m> هر دو باعث تأخیر در اجرای کد می‌شوند، اما <m>defer</m> اجرا را بعد از DOMContentLoaded تضمین می‌کند.</t>
+<h3>10.3.2 هندلرهای درون‌خطی (Inline Event Handlers)</h3>
+<t>این روش شامل تعیین رویدادها مستقیماً در HTML است (مثلاً <m>onclick</m>).</t>
+<pre class="code">
+&lt;button onclick="alert('کلیک شد!')"&gt;کلیک کنید&lt;/button&gt;
+&lt;input type="text" oninput="this.value = this.value.toUpperCase()"&gt;
+</pre>
+<ul>
+  <li>استفاده از هندلرهای درون‌خطی به عنوان روش توصیه‌شده نیست.</li>
+  <li>این روش منجر به تداخل کد، عدم نگهداری و مشکلات امنیتی (مثل XSS) می‌شود.</li>
+  <li>بهتر است از <m>addEventListener</m> در <b>JavaScript</b> استفاده شود.</li>
+</ul>
+<pre class="code">
+&lt;button id="myBtn"&gt;کلیک کنید&lt;/button&gt;
+
+&lt;script&gt;
+ document.getElementById("myBtn").addEventListener("click", function () {
+  alert("کلیک شد!");
+ });
+&lt;/script&gt;
+</pre>
+<ul>
+  <li>استفاده از <m>addEventListener</m> امکان اضافه کردن چندین هندلر به یک رویداد را فراهم می‌کند.</li>
+  <li>امکان حذف هندلر با <m>removeEventListener</m> وجود دارد.</li>
+</ul>
+<br><t>یک صفحه وب موفق، فقط با زیبایی ظاهری نیست بلکه با <b>استفاده هوشمندانه از ویژگی‌های عمومی، مدیریت داده با <m>data-*</m> و اجرای اسکریپت‌های پیشرفته با <m>async/defer</m> و <m>addEventListener</m></b> ساخته می‌شود. این فصل پایه‌ای برای نوشتن محتوای پویا، پایدار و متناسب با استانداردهای جهانی است.</t>
 
 <br><br><hr><br>
 <a href="11.html" class="np" style="float:right;"><img src="../assets/forward.svg" width="14px"> بعدی</a>
 <a href="9.html" class="np" style="float:left;">قبلی <img src="../assets/back.svg" width="14px"></a>
 <br><br>
 
-</div>
-</center>
+</main>
 
-<div class="footer">
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="help.html">راهنما</a>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">نقشه ی سایت</a>
+<footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="tags.html">تگ ها</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../assets/sitemap.xml">نقشه ی سایت</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html">درباره ی ما</a>
 &nbsp;&nbsp;&nbsp;&nbsp;Structure © 2025
-</div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 </body>
 </html>

@@ -1,33 +1,295 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Structure</title>
+ <title>ساختار بنیادین سند HTML</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+ <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="header"><a href="../index.html" target="_blank">صفحه ی اصلی</a>&nbsp;&nbsp;&nbsp;Structure</div>
+<header><a href="" target="_blank">Structure</a><code>&nbsp;>&nbsp;html</code></header>
 
-<center>
-<div class="text">
+<main>
+<div class="alert">این متن هنوز کامل نیست و در حال بروزرسانی است. نسخه‌ی نهایی پس از تکمیل در دسترس قرار خواهد گرفت.</div>
+<h1>ساختار بنیادین سند HTML</h1>
+<t>در عصر دیجیتال ساختار بنیادین یک سند HTML به عنوان <b>"استخوان‌های اصلی"</b> یک صفحه وب، نقش محوری در <b>تعیین کیفیت، عملکرد، دسترسی‌پذیری و سازگاری با تمام دستگاه‌ها</b> ایفا می‌کند. این فصل به بررسی جامع و تخصصی چهار بخش اصلی مرتبط با ساختار اولیه سند HTML می‌پردازد: (1) مسیر تکامل استانداردها (2) تعریف نوع سند و حالت‌های رندرینگ (3) ساختار اصلی با <m>&lt;html&gt;</m> - <m>&lt;head&gt;</m> - <m>&lt;body&gt;</m> و (4) اصول نگارش معتبر و خوانا. هدف این فصل ایجاد پایه‌ای محکم، مطابق با استانداردهای جهانی و قابل نگهداری برای آینده است.</t>
 
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+<br><h2>1.1 استانداردهای HTML و مسیر تکامل: از چهارچوب‌های قدیمی به استاندارد زنده</h2>
+<h3>1.1.1 WHATWG و مفهوم "Living Standard"</h3>
+<ul>
+  <li><b>WHATWG (Web Hypertext Application Technology Working Group)</b> یک گروه مرجع است که به صورت مستمر و پویا استاندارد HTML را توسعه می‌دهد.</li>
+  <li><b>Living Standard</b> - یعنی استاندارد به صورت پیوسته به‌روزرسانی می‌شود و هیچ نسخه ثابتی وجود ندارد.</li>
+  <li>مزیت ها شامل: سرعت بالا در انتشار ویژگی‌های جدید (مثلاً <m>async</m> - <m>defer</m> - <m>loading</m>).</li>
+  <li>نمونه‌های معروف: fetch API - Intersection Observer - HTML Template - همه از طریق <b>WHATWG</b> معرفی شده‌اند.</li>
+</ul>
+<t><b>WHATWG</b> به جای "نسخه‌های متوقف‌شده" روی توسعه پیوسته و اصلاح‌پذیری تأکید دارد. این مدل باعث شده است که HTML به یک زبان پویا و انعطاف‌پذیر تبدیل شود.</t>
+<h3>1.1.2 W3C و مدل نسخه‌ای</h3>
+<ul>
+  <li><b>W3C (World Wide Web Consortium)</b> یک سازمان استانداردسازی است که نسخه‌های ثابتی از HTML منتشر می‌کند (مثلاً HTML5.2).</li>
+  <li>معایب: به دلیل فرآیند تایید طولانی، تاخیر در انتشار ویژگی‌های جدید وجود دارد.</li>
+</ul>
+<table>
+ <tr>
+  <th>ویژگی</th>
+  <th>WHATWG (Living Standard)</th>
+  <th>W3C (Versioned)</th>
+ </tr>
+
+ <tr>
+  <td>مدل</td>
+  <td>پیوسته و پویا</td>
+  <td>ثابت و نسخه ای</td>
+ </tr>
+
+ <tr>
+  <td>بروزرسانی</td>
+  <td>فوری و مستمر</td>
+  <td>دوره ای (مثلا سالی یکبار)</td>
+ </tr>
+
+ <tr>
+  <td>مثال</td>
+  <td><m>loading="lazy"</m></td>
+  <td>متوقف شده <m>HTML5.2</m></td>
+ </tr>
+
+ <tr>
+  <td>مدیریت تغییرات</td>
+  <td>بدون نیاز به نسخه جدید</td>
+  <td>نیاز به نسخه جدید</td>
+ </tr>
+</table>
+<ul>
+  <li>امروزه هر دو مدل با هم هم‌پوشانی دارند اما <b>WHATWG</b> به عنوان منبع اصلی استانداردهای مدرن شناخته می‌شود.</li>
+  <li><b>W3C</b> نسخه‌های رسمی و مورد تأیید جهانی را منتشر می‌کند.</li>
+</ul>
+<h3>1.1.3 مقایسهٔ HTML4، XHTML و HTML5</h3>
+<table>
+ <tr>
+  <th>ویژگی</th>
+  <th>HTML4</th>
+  <th>XHTML</th>
+  <th>HTML5</th>
+ </tr>
+
+ <tr>
+  <td>ساختار</td>
+  <td>ساده و غیرقابل تنظیم</td>
+  <td>حساس به حروف مانند XML</td>
+  <td>نعطلاف پذیر، با حفط ساختار</td>
+ </tr>
+
+ <tr>
+  <td>حساسیت به حروف</td>
+  <td>حساس (مثلا <m>&lt;BR&gt;</m> صحیح است)</td>
+  <td>غیر حساس (مثلا <m>&lt;/br&gt;</m>)</td>
+  <td>انعطلاف پذیر (هم <m>&lt;/br&gt;</m> و <m>&lt;br&gt;</m> صحیح است)</td>
+ </tr>
+
+ <tr>
+  <td>ویژگی های جدید</td>
+  <td>محدود (فقط <m>&lt;div&gt;</m> - <m>&lt;span&gt;</m>)</td>
+  <td>محدود (مخصوصا برای XML)</td>
+  <td>پربار (فرم ها، ویدئو، تصاویر، موزیک و...)</td>
+ </tr>
+
+ <tr>
+  <td>توصیه فعلی</td>
+  <td>منسوخ شده</td>
+  <td>منسوخ شده</td>
+  <td>استاندارد جهانی</td>
+ </tr>
+</table>
+<ul>
+  <li>HTML5 به عنوان استاندارد اصلی و ترجیحی برای توسعه وب مدرن تلقی می‌شود.</li>
+  <li>استفاده از <m>&lt;!DOCTYPE html&gt;</m> فقط برای HTML5 است.</li>
+</ul>
+<h3>1.2.1 <m>&lt;!DOCTYPE html&gt;</m>: شروع سند HTML5</h3>
+<ul>
+  <li>این خط اولین خط یک سند HTML است و به مرورگر می‌گوید که این فایل از کدام استاندارد استفاده می‌کند.</li>
+  <li>نوع سند: <m>&lt;!DOCTYPE html&gt;</m></li>
+  <li>تأثیر: فعال‌سازی حالت استاندارد <m>&lt;Standards Mode&gt;</m> در مرورگرها.</li>
+</ul>
+<pre class="code">
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang="fa"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;صفحه اول&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;محتوای صفحه&lt;/p&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+</pre>
+<ul>
+  <li>بدون <m>&lt;!DOCTYPE html&gt;</m> مرورگرها به حالت <b>"Quirks Mode"</b> وارد می‌شوند که باعث عدم سازگاری با استانداردها می‌شود.</li>
+  <li><b>Quirks Mode</b> به دلیل از دست دادن ساختار و استایل، بهترین عملکرد را ندارد.</li>
+</ul>
+<h3>1.2.2 حالت‌های Rendering در مرورگرها</h3>
+<table>
+ <tr>
+  <td>Standards Mode</td>
+  <td>سازگار با استانداردهای W3C/WHATWG</td>
+ </tr>
+
+ <tr>
+  <td>Quirks Mode</td>
+  <td>سازگار با مرورگرهای قدیمی (مثلاً IE6)</td>
+ </tr>
+
+ <tr>
+  <td>Limited Quirks Mode</td>
+  <td>نسخه‌ای محدود از Quirks Mode</td>
+ </tr>
+</table>
+<ul>
+  <li>استفاده از <m>&lt;!DOCTYPE html&gt;</m> به طور قطع از ورود به <b>Quirks Mode</b> جلوگیری می‌کند.</li>
+  <li>این کار به سازگاری، استایل‌دهی و عملکرد پایدار کمک می‌کند.</li>
+</ul>
+<h3>1.2.3 دسته‌بندی تگ‌ها: Void, Raw Text, Escapable Raw Text</h3>
+<t>این دسته‌بندی برای درک نحوه تفسیر تگ‌ها توسط مرورگرها ضروری است.</t>
+<br><table>
+ <tr>
+  <td>Void Elements</td>
+  <td>بدون تگ بسته (self-closing)</td>
+  <td><m>&lt;img&gt;</m> - <m>&lt;br&gt;</m> - <m>&lt;input&gt;</m></td>
+ </tr>
+
+ <tr>
+  <td>Raw Text Elements</td>
+  <td>محتوای داخلی بدون تحلیل (نه کاراکترهای خاص)</td>
+  <td><m>&lt;style&gt;</m> - <m>&lt;script&gt;</m></td>
+ </tr>
+
+ <tr>
+  <td>Escapable Raw Text Elements</td>
+  <td>محتوای داخلی که کاراکترهای خاص را می‌توان اسکیپ کرد</td>
+  <td><m>&lt;title&gt;</m> - <m>&lt;textarea&gt;</m></td>
+ </tr>
+</table>
+<ul>
+  <li>در <m>&lt;script&gt;</m> و <m>&lt;style&gt;</m> محتوا به صورت <b>"خام" (raw)</b> تفسیر می‌شود و از تجزیه کاراکترهای خاص (مثل <m>&lt;</m> <m>&gt;</m>) جلوگیری می‌شود.</li>
+  <li>در <m>&lt;textarea&gt;</m> و <m>&lt;title&gt;</m> کاراکترهای خاص مثل <m>&lt;</m> و <m>&gt;</m> می‌توانند با اسکیپ (مثلاً <m>&lt;</m>) نمایش داده شوند.</li>
+</ul>
+<br><h2>1.3 تگ‌های اصلی ریشهٔ سند: ساختار اولیه</h2>
+<h3>1.3.1 <m>&lt;html lang="" dir=""&gt;</html>: ریشه سند</h3>
+<t>این عنصر ریشه کلی سند است و تمامی محتوای صفحه درون آن قرار می‌گیرد. ویژگی‌های کلیدی:</t>
+<ul>
+  <li><m>lang</m>: زبان محتوا (مثلاً <m>fa</m> - <m>en</m> - <m>ar</m>)</li>
+  <li><m>dir</m>: جهت نوشتار (<m>ltr</m> یا <m>rtl</m>)</li>
+</ul>
+<pre class="code">
+&lt;html lang="fa" dir="rtl"&gt;
+ &lt;!-- ساختار صفحه --&gt;
+&lt;/html&gt;
+</pre>
+<ul>
+  <li><m>lang</m> به ابزارهای خواندن متن <m>&lt;Screen Readers&gt;</m> کمک می‌کند تا لحن و تلفظ را به درستی تشخیص دهند.</li>
+  <li>dir="rtl<m>"</m> برای زبان‌های فارسی، عربی و عبری ضروری است.</li>
+</ul>
+<h3>1.3.2 ساختار اولیه با <m>&lt;head&gt;</m> و <m>&lt;body&gt;</m></h3>
+<ul>
+  <li><m>&lt;head&gt;</m>: شامل متادیتا، استایل، اسکریپت‌های خارجی، و تعاریف صفحه.</li>
+  <li><m>&lt;body&gt;</m>: شامل محتوای نمایشی صفحه.</li>
+</ul>
+<pre class="code">
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang="fa" dir="rtl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;صفحه اول&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/main.css"&gt;
+    &lt;script src="/js/app.js" defer&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1&gt;وبسایت آموزشی&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      &lt;p&gt;محتوای صفحه&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;p&gt;&amp;copy; ۱۴۰۴&lt;/p&gt;
+    &lt;/footer&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+</pre>
+<ul>
+  <li><m>charset</m> باید در اولین ردیف تگ‌های <m>&lt;head&gt;</m> قرار گیرد.</li>
+  <li><m>viewport</m> برای سازگاری با موبایل ضروری است.</li>
+  <li><m>defer</m> برای اجرای اسکریپت‌ها بعد از تحلیل DOM.</li>
+</ul>
+<br><h2>1.4 اصول نگارش معتبر HTML: از ساختار تا خوانایی</h2>
+<h3>1.4.1 تو‌در‌تویی (Nesting) صحیح</h3>
+<t>هر تگ باید به درستی درون تگ دیگر قرار گیرد.</t>
+<t>مثال نادرست:</t>
+<pre class="code">&lt;p&gt;&lt;strong&gt;متن&lt;/p&gt;&lt;/strong&gt;</pre>
+<t>مثال درست:</t>
+<pre class="code">&lt;p&gt;&lt;strong&gt;متن&lt;/strong&gt;&lt;/p&gt;</pre>
+<ul>
+  <li>عدم رعایت تو‌در‌تویی باعث خطای تحلیل HTML می‌شود.</li>
+  <li>استفاده از ابزارهایی مانند Validator.W3C.org برای بررسی صحت کد ضروری است.</li>
+</ul>
+<h3>1.4.2 حساسیت به حروف (Case Sensitivity)</h3>
+<t>HTML5 به صورت غیرحساس به حروف است اما توصیه می‌شود:</t>
+<ul>
+  <li>استفاده از حروف کوچک برای نگارش تگ‌ها.</li>
+  <li>استفاده از <m>class</m> - <m>id</m> - <m>lang</m> به صورت کوچک.</li>
+</ul>
+<pre class="code">&lt;div class="container"&gt;محتوا&lt;/div&gt;</pre>
+<ul>
+  <li>در CSS و JavaScript، <m>id</m> و <m>class</m> حساس به حروف هستند.</li>
+  <li>استفاده از حروف کوچک به جلوگیری از خطا کمک می‌کند.</li>
+</ul>
+<h3>1.4.3 درج توضیح‌ها: <m>&lt;!-- … --&gt;</m></h3>
+<ul>
+  <li>این تگ برای اضافه کردن نظرات داخل کد استفاده می‌شود.</li>
+  <li>توضیحات به صورت نمایش داده نمی‌شوند.</li>
+</ul>
+<pre class="code">
+&lt;!-- این بخش مربوط به منوی اصلی است --&gt;
+&lt;nav&gt;
+ &lt;ul&gt;
+  &lt;li&gt;&lt;a href="/"&gt;صفحه اصلی&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+  
+&lt;!-- تماس با ما --&gt;
+&lt;section id="contact"&gt;
+ &lt;p&gt;ایمیل: info@example.com&lt;/p&gt;
+&lt;/section&gt;
+</pre>
+<ul>
+  <li>استفاده از توضیحات برای مستندسازی کد، به ویژه در پروژه‌های بزرگ، بسیار مفید است.</li>
+  <li>از توضیحات برای غیرفعال کردن کد (Commenting Out) استفاده کنید.</li>
+</ul>
+
+
+
+
+
+
+
+
 
 <br><br><hr><br>
 <a href="2.html" class="np" style="float:right;"><img src="../assets/forward.svg" width="14px"> بعدی</a>
 <br><br>
 
-</div>
-</center>
+</main>
 
-<div class="footer">
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="help.html">راهنما</a>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">نقشه ی سایت</a>
+<footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="tags.html">تگ ها</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../assets/sitemap.xml">نقشه ی سایت</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html">درباره ی ما</a>
 &nbsp;&nbsp;&nbsp;&nbsp;Structure © 2025
-</div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 </body>
 </html>

@@ -1,34 +1,182 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Structure</title>
+ <title>جاسازی محتوای خارجی و اشیاء</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+ <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="header"><a href="../index.html" target="_blank">صفحه ی اصلی</a>&nbsp;&nbsp;&nbsp;Structure</div>
+<header><a href="" target="_blank">Structure</a><code>&nbsp;>&nbsp;html</code></header>
 
-<center>
-<div class="text">
+<main>
+<div class="alert">این متن هنوز کامل نیست و در حال بروزرسانی است. نسخه‌ی نهایی پس از تکمیل در دسترس قرار خواهد گرفت.</div>
+<h1>جاسازی محتوای خارجی و اشیاء</h1>
+<t>در توسعه وب مدرن ادغام <b>محتوای خارجی (External Content Integration)</b> به عنوان یکی از اصلی‌ترین ابزارهای ساخت سایت‌های پویا، چندوجهی و کاربردی مطرح می‌شود. این فصل به بررسی جامع و تخصصی روش‌های جاسازی محتوای خارجی در HTML5 می‌پردازد شامل استفاده از <m>&lt;iframe&gt;</m> - <m>&lt;embed&gt;</m> - <m>&lt;object&gt;</m> و بررسی انتخاب‌های امنیتی، دسترسی‌پذیری و همچنین تحلیل تگ‌های منسوخ‌شده که همچنان در برخی محیط‌ها وجود دارند. این عناصر نه تنها به افزایش قابلیت‌های سایت کمک می‌کنند بلکه مدیریت امنیتی، عملکرد و سازگاری با استانداردهای جهانی را نیز تضمین می‌نمایند.</t>
 
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+<br><br><h2>7.1 نمایش صفحات خارجی با iframe: ادغام بخشی در صفحه</h2>
+<h3>7.1.1 <m>&lt;iframe&gt;</m>: چارچوب داخلی (Inline Frame)</h3>
+<ul>
+  <li>این عنصر برای جاسازی صفحات وب، محتوای خارجی یا ابزارهای آنلاین در صفحه فعلی استفاده می‌شود.</li>
+  <li><m>&lt;iframe&gt;</m> یک عنصر <b>"محدوده" (sandboxed)</b> است که می‌تواند به صورت موقت یا دائمی اجرای کد خارجی را فراهم کند.</li>
+</ul>
+<table>
+ <tr>
+  <td><m>src</m></td>
+  <td>مسیر صفحه یا منبع خارجی (ضروری)</td>
+ </tr>
+
+ <tr>
+  <td><m>width</m> / <m>height</m></td>
+  <td>ابعاد چارچوب</td>
+ </tr>
+
+ <tr>
+  <td><m>title</m></td>
+  <td>عنوان مختصر برای دسترسی‌پذیری (ضروری)</td>
+ </tr>
+  
+ <tr>
+  <td><m>loading="lazy"</m></td>
+  <td>بارگذاری تأخیری (برای بهینه‌سازی)</td>
+</tr>
+
+ <tr>
+  <td><m>sandbox</m></td>
+  <td>کنترل دسترسی به کد خارجی (امنیتی)</td>
+ </tr>
+  
+ <tr>
+  <td><m>allowfullscreen</m></td>
+  <td>فعال‌سازی پخش کامل صفحه</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;iframe
+ src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+ title="ویدئوی آموزشی در یوتیوب" 
+ width="560" 
+ height="315" 
+ loading="lazy"
+ sandbox="allow-scripts allow-same-origin"
+ allowfullscreen
+&gt;&lt;/iframe&gt;
+</pre>
+<t><m>sandbox</m> یکی از مهم‌ترین ویژگی‌های <m>&lt;iframe&gt;</m> است. بدون آن محتوای خارجی می‌تواند به صورت کامل دسترسی به صفحه فعلی داشته باشد.</t>
+<ul>
+  <li><m>allow-scripts</m>: اجازه اجرای JavaScript</li>
+  <li><m>allow-same-origin</m>: اجازه دسترسی به origin مشابه</li>
+  <li><m>allow-popups</m>: اجازه باز کردن پنجره‌های جدید</li>
+  <li><m>allow-forms</m>: اجازه ارسال فرم</li>
+  <li><m>allow-modals</m>: اجازه باز کردن پنجره‌های مودال</li>
+</ul>  
+<t>اگر <m>sandbox</m> فعال باشد حتی اگر <m>allow-scripts</m> وجود داشته باشد اجرای کد خارجی فقط در محیط محدود انجام می‌شود و از دسترسی به DOM صفحه فعلی جلوگیری می‌کند.</t>
+<h3>7.1.2 مدیریت دسترسی‌پذیری و تجربه کاربری</h3>
+<ul>
+  <li>استفاده از <m>title</m> برای توصیف محتوای داخل <m>iframe</m> ضروری است.</li>
+  <li>از <m>aria-label</m> یا <m>aria-labelledby</m> برای افزایش دسترسی‌پذیری استفاده کنید.</li>
+  <li>در صورتی که <m>iframe</m> حاوی محتوای مهم است باید محتوای <b>جایگزین (fallback)</b> درون تگ قرار داده شود.</li>
+</ul>
+<pre class="code">
+&lt;iframe 
+ src="https://example.com/form" 
+ title="فرم ثبت‌نام آنلاین"
+ aria-label="فرم ثبت‌نام آنلاین"
+ sandbox="allow-scripts allow-same-origin"
+&gt;
+ &lt;p&gt;لطفاً از مرورگر خود برای دسترسی به فرم استفاده کنید.&lt;/p&gt;
+&lt;/iframe&gt;
+</pre>
+<t>برای جلوگیری از مشکلات دسترسی از <m>aria-describedby</m> برای ارجاع به توضیحات جانبی استفاده کنید.</t>
+
+<br><br><h2>7.2 فایل‌های خارجی با embed و object: ادغام اشیاء فنی</h2>
+<h3>7.2.1 <m>&lt;embed&gt;</m>: عنصر ساده برای ادغام محتوای خارجی</h3>
+<ul>
+  <li>این عنصر برای ادغام اشیاء خارجی مانند فایل‌های PDF، ویدئوها، فایل‌های صوتی، یا ابزارهای چندرسانه‌ای استفاده می‌شود.</li>
+  <li>ساده، بدون نیاز به تعریف مجدد منبع.</li>
+  <li>معایب شامل کمتر کنترل‌پذیر، بدون پشتیبانی قوی از دسترسی‌پذیری.</li>
+</ul>
+<pre class="code">
+&lt;embed 
+ src="presentation.pdf" 
+ type="application/pdf" 
+ width="100%" 
+ height="600px"
+ title="اسلاید‌های ارائه"
+/&gt;
+</pre>
+<t><m>&lt;embed&gt;</m> اغلب به صورت <b>"پشتیبانی ناقص"</b> توسط مرورگرها عمل می‌کند و ممکن است در برخی موارد بدون نمایش بماند. بهتر است از <m>&lt;object&gt;</m> استفاده شود.</t>
+<h3>7.2.2 <m>&lt;object&gt;</m>: عنصر قابل تنظیم برای ادغام اشیاء</h3>
+<ul>
+  <li>این عنصر یک جایگزین قوی‌تر و انعطاف‌پذیرتر از <m>&lt;embed&gt;</m> است.</li>
+  <li>می‌تواند شامل <m>param</m> برای پارامترهای فنی باشد.</li>
+  <li>پشتیبانی بهتر از دسترسی‌پذیری و مدیریت محتوای جایگزین.</li>
+</ul>
+<pre class="code">
+&lt;object 
+ data="video.mp4" 
+ type="video/mp4" 
+ width="640" 
+ height="360"
+ title="ویدئوی آموزشی"
+&gt;
+ &lt;param name="autoplay" value="false"&gt;
+ &lt;param name="controls" value="true"&gt;
+ &lt;p&gt;مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.&lt;/p&gt;
+&lt;/object&gt;
+</pre>
+<ul>
+  <li>امکان تعیین پارامترهای فنی با <m>&lt;param&gt;</m></li>
+  <li>پشتیبانی از محتوای جایگزین (<m>&lt;p&gt;</m>)</li>
+  <li>بهترین انتخاب برای فایل‌های PDF، ویدئو، صوت، اسلاید و غیره</li>
+</ul>
+<t><m>&lt;object&gt;</m> به عنوان <b>"عنصر معنایی"</b> در HTML5 شناخته می‌شود در حالی که <m>&lt;embed&gt;</m> <b>"غیرمعنایی"</b> است.</t>
+<t>استفاده از <m>&lt;object&gt;</m> با <m>data</m> و <m>type</m>، به موتورهای جستجو و ابزارهای دسترسی کمک می‌کند تا نوع محتوا را تشخیص دهند.</t>
+
+<br><br><h2>7.3 بررسی تگ‌های منسوخ‌شده HTML: از گذشته به آینده</h2>
+<h3>7.3.1 <m>&lt;applet&gt;</m>: ماشین مجازی جاوا (Java Applet)</h3>
+<t>این تگ برای اجرای برنامه‌های جاوا در مرورگر استفاده می‌شد. این تگ <b>منسوخ‌شده (Deprecated)</b> در HTML5. دلایل منسوخ شدن:</t>
+<ul>
+  <li>مشکلات امنیتی (دارای سطح بالایی از آسیب‌پذیری‌ها)</li>
+  <li>عدم پشتیبانی از ابزارهای مدرن</li>
+  <li>کاهش استفاده از Java در وب</li>
+</ul>  
+<t>از استفاده از <m>&lt;applet&gt;</m> خودداری کنید. به جای آن از فریم‌ورک‌های مدرن مانند <m>React</m> - <m>Vue</m> یا <m>WebAssembly</m> استفاده کنید.</t>
+<h3>7.3.2 <m>&lt;frame&gt;</m> و <m>&lt;frameset&gt;</m>: چارچوب‌های صفحه (Frame-based Layouts)</h3>
+<t>این تگ‌ها برای تقسیم صفحه به چند بخش (frame) استفاده می‌شدند. منسوخ‌شده در HTML5. دلایل منسوخ شدن:</t>
+<ul>
+  <li>مشکلات دسترسی‌پذیری (<b>Screen Readers</b> نمی‌توانستند چارچوب‌ها را تشخیص دهند)</li>
+  <li>مشکلات ناوبری (URL هر چارچوب جداگانه بود)</li>
+  <li>عدم سازگاری با موبایل</li>
+  <li>امکان تداخل بین چارچوب‌ها</li>
+</ul>  
+<pre class="code">
+&lt;frameset cols="25%,75%"&gt;
+ &lt;frame src="menu.html"&gt;
+ &lt;frame src="content.html"&gt;
+&lt;/frameset&gt;
+</pre>
+<t>استفاده از <m>&lt;section&gt;</m> - <m>&lt;aside&gt;</m> - <m>&lt;main&gt;</m> و CSS Grid/Flexbox برای ساختارهای چندبخشی</t>
+<t>استفاده از <m>&lt;iframe&gt;</m> برای ادغام محتوای خارجی در بخش‌های مختلف</t>
+<br><t>یک صفحه وب موفق فقط با زیبایی ظاهری نیست بلکه با <b>استفاده هوشمندانه از ادغام محتوا، مدیریت امنیتی، و اجتناب از فناوری‌های منسوخ‌شده</b> ساخته می‌شود. این فصل پایه‌ای برای نوشتن محتوای چندرسانه‌ای معتبر، امن و متناسب با استانداردهای جهانی است.</t>
 
 <br><br><hr><br>
 <a href="8.html" class="np" style="float:right;"><img src="../assets/forward.svg" width="14px"> بعدی</a>
 <a href="6.html" class="np" style="float:left;">قبلی <img src="../assets/back.svg" width="14px"></a>
 <br><br>
 
-</div>
-</center>
+</main>
 
-<div class="footer">
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="help.html">راهنما</a>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">نقشه ی سایت</a>
+<footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="tags.html">تگ ها</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../assets/sitemap.xml">نقشه ی سایت</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html">درباره ی ما</a>
 &nbsp;&nbsp;&nbsp;&nbsp;Structure © 2025
-</div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 </body>
 </html>

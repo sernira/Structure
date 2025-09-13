@@ -1,34 +1,263 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Structure</title>
+ <title>دسترسی‌پذیری ساختاری برای همه کاربران</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+ <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="header"><a href="../index.html" target="_blank">صفحه ی اصلی</a>&nbsp;&nbsp;&nbsp;Structure</div>
+<header><a href="" target="_blank">Structure</a><code>&nbsp;>&nbsp;html</code></header>
 
-<center>
-<div class="text">
+<main>
+<div class="alert">این متن هنوز کامل نیست و در حال بروزرسانی است. نسخه‌ی نهایی پس از تکمیل در دسترس قرار خواهد گرفت.</div>
+<h1>دسترسی‌پذیری ساختاری برای همه کاربران</h1>
+<t>در عصر دیجیتال، <b>دسترسی‌پذیری (Accessibility)</b> به عنوان یکی از اصلی‌ترین اصول توسعه وب مدرن، بیش از یک ویژگی فنی، به یک حق اساسی برای تمام کاربران تبدیل شده است. این فصل به بررسی جامع و تخصصی چهار اصل اصلی WCAG <b>(Web Content Accessibility Guidelines)</b> نقش صفات و نقش‌های ARIA، و راهکارهای ناوبری بدون ماوس می‌پردازد.  
+    هدف این فصل، ایجاد صفحات وبی که هر کاربر - چه نابینا، چه ناشنوا، چه دارای محدودیت حرکتی یا شناختی - بتواند به راحتی به محتوا دسترسی داشته باشد.</t>
 
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+<br><br><h2>11.1 چهار اصل اصلی WCAG: بنیان دسترسی‌پذیری</h2>
+<h3>11.1.1 قابل‌ادراک (Perceivable)</h3>
+<t>کاربران باید بتوانند تمامی محتوا را از طریق حواس خود درک کنند. شامل:</t>
+<ul>
+  <li>متن جایگزین برای تصاویر (<code>alt</code>)</li>
+  <li>توضیحات برای ویدئوها (زیرنویس، توصیف)</li>
+  <li>تفاوت کافی در رنگ (حداقل 4.5:1 برای متن)</li>
+  <li>محتوای غیرتصویری (مانند اسکرول، انیمیشن) باید قابل دسترسی باشد</li>
+</ul>
+<pre class="code">
+&lt;img src="chart.png" alt="نمودار رشد فروش در سال ۱۴۰۳"&gt;
+&lt;video controls&gt;
+ &lt;track kind="captions" src="subtitles.vtt" srclang="fa" label="زیرنویس فارسی"&gt;
+&lt;/video&gt;
+</pre>
+<t><m>alt</m> برای تصاویر مهم و <m>track</m> برای ویدئوها به کاربران نابینا و گفتاری کمک می‌کنند. استفاده از <m>aria-label</m> برای اشیاء غیرقابل دسترسی (مثل آیکون‌ها) ضروری است.</t>
+<h3>11.1.2 قابل‌عمل (Operable)</h3>
+<t>کاربران باید بتوانند به تمامی عناصر تعاملی دسترسی داشته باشند، حتی بدون ماوس. شامل:</t>
+<ul>
+  <li>دسترسی با کیبورد (Tab - Enter - Arrow Keys)</li>
+  <li>زمان کافی برای عمل (نه محدودیت زمانی برای کاربران ناهمخوان)</li>
+  <li>جلوگیری از انگیزش‌های ناخواسته (مثلاً انیمیشن‌های مدام)</li>
+</ul>  
+<pre class="code">
+&lt;button tabindex="0"&gt;اعمال تغییرات&lt;/button&gt;
+&lt;a href="#content" class="skip-link"&gt;پرش به محتوا&lt;/a&gt;
+</pre>
+<ul>
+  <li><m>tabindex="0"</m> برای فعال‌سازی دسترسی با Tab.</li>
+  <li><m>tabindex="-1"</m> برای غیرفعال کردن از دسترسی (مثلاً در دکمه‌های موقت).</li>
+</ul>
+<h3>11.1.3 قابل‌فهم (Understandable)</h3>
+<t>محتوا باید به روشی واضح، منطقی و پیش‌بینی‌پذیر ارائه شود.</t>
+<ul>
+  <li>متن ساده و قابل فهم</li>
+  <li>پیش‌بینی‌پذیری رفتار (مثلاً لینک‌ها در هر جا یکسان عمل کنند)</li>
+  <li>راهنمایی در صورت خطای ورودی</li>
+  <li>استفاده از عناصر معنایی (مثل <code>&lt;nav&gt;</code> - <code>&lt;main&gt;</code>)</li>
+</ul>  
+<pre class="code">
+&lt;label for="email"&gt;ایمیل:&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required aria-invalid="true"&gt;
+&lt;p id="error-email" role="alert"&gt;لطفاً یک ایمیل معتبر وارد کنید.&lt;/p&gt;
+</pre>
+<ul>
+  <li><m>aria-invalid="true"</m> و <m>role="alert"</m> به <b>Screen Readers</b> کمک می‌کند تا خطا را به صورت فوری اعلام کند.</li>
+  <li>استفاده از <m>aria-live="polite"</m> برای اعلان‌های غیرفوری (مثلاً "فرم ارسال شد").</li>
+</ul>  
+<h3>11.1.4 مقاوم (Robust)</h3>
+<t>محتوا باید با تمام ابزارهای دسترسی و مرورگرهای مختلف کار کند.</t>
+<ul>
+  <li>سازگاری با نرم‌افزارهای خواننده متن (Screen Readers)</li>
+  <li>سازگاری با ابزارهای تغییر تنظیمات (مثلاً بزرگ‌نمایی)</li>
+  <li>استفاده از استانداردهای HTML و ARIA به درستی</li>
+</ul>
+<pre class="code">
+&lt;div role="region" aria-label="منوی اصلی"&gt;
+ &lt;ul&gt;
+  &lt;li&gt;&lt;a href="/"&gt;صفحه اصلی&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/about"&gt;درباره ما&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<ul>
+  <li>استفاده از <m>role</m> و <m>aria-*</m> به صورت صحیح، به ابزارهای دسترسی کمک می‌کند تا ساختار صفحه را به درستی تشخیص دهد.</li>
+  <li>از <m>role="application"</m> فقط در موارد خاص (مثل ورودی پیچیده) استفاده کنید.</li>
+</ul>
+
+<br><h2>11.2 نقش‌ها و صفات ARIA: تقویت ساختار معنایی</h2>
+<h3>11.2.1 نقش‌های ARIA (Roles)</h3>
+<ul>
+  <li>ARIA (Accessible Rich Internet Applications) به عنوان پل بین HTML و ابزارهای دسترسی عمل می‌کند.</li>
+  <li>نقش‌ها مشخص می‌کنند که یک عنصر چه نوع عملکردی دارد.</li>
+</ul>
+<table>
+ <tr>
+  <td><m>role="navigation"</m></td>
+  <td>منوی ناوبری</td>
+ </tr>
+
+ <tr>
+  <td><m>role="main"</m></td>
+  <td>محتوای اصلی صفحه</td>
+ </tr>
+
+ <tr>
+  <td><m>role="button"</m></td>
+  <td>دکمه مجازی</td>
+ </tr>
+
+ <tr>
+  <td><m>role="alert"</m></td>
+  <td>پیام هشدار</td>
+ </tr>
+
+ <tr>
+  <td><m>role="dialog"</m></td>
+  <td>پنجره مودال</td>
+ </tr>
+
+ <tr>
+  <td><m>role="listbox"</m></td>
+  <td>لیست قابل انتخاب</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;div role="alert" aria-live="assertive"&gt;
+ فرم با موفقیت ارسال شد!
+&lt;/div&gt;
+</pre>
+<ul>
+  <li><m>aria-live="polite"</m> برای اعلان‌های غیرفوری (مثلاً "آپدیت شد")</li>
+  <li><m>aria-live="assertive"</m> برای اعلان‌های فوری (مثلاً "خطای امنیتی")</li>
+</ul>  
+<h3>11.2.2 ویژگی‌های ARIA (Properties & States)</h3>
+<t>این ویژگی‌ها وضعیت فعلی یک عنصر را مشخص می‌کنند.</t>
+<table>
+ <tr>
+  <td><m>aria-label</m></td>
+  <td>توضیح مختصر بدون نمایش</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-labelledby</m></td>
+  <td>ارجاع به یک یا چند عنوان</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-describedby</m></td>
+  <td>توضیحات جانبی</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-expanded</m></td>
+  <td>آیا بخش باز است؟</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-checked</m></td>
+  <td>آیا گزینه انتخاب شده؟</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-hidden</m></td>
+  <td>مخفی کردن از دسترسی</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;button 
+ aria-expanded="false" 
+ aria-controls="menu-content"
+ onclick="toggleMenu()"
+ &gt;
+ منو
+&lt;/button&gt;
+&lt;div id="menu-content" hidden&gt;
+ &lt;ul&gt;
+  &lt;li&gt;&lt;a href="#"&gt;اولین مورد&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;دومین مورد&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<ul>
+  <li>استفاده از <m>aria-controls</m> برای ارتباط بین دکمه و محتوای مرتبط.</li>
+  <li><m>aria-expanded</m> باید به صورت دینامیک تغییر کند (با JavaScript).</li>
+</ul>  
+
+<br><h2>11.3 ناوبری بدون ماوس (کیبوردی): دسترسی برای تمام کاربران</h2>
+<h3>11.3.1 <m>tabindex</m>: مدیریت ترتیب دسترسی</h3>
+<t><m>tabindex</m> ترتیب ورود کاربر به عناصر را تعیین می‌کند. مقادیر:</t>
+<ul>
+  <li><m>0</m>: اضافه به ترتیب طبیعی DOM</li>
+  <li><m>1-</m>: غیرقابل دسترسی با Tab</li>
+  <li><m>1, 2, ...</m>: ترتیب دستی (نامناسب)</li>
+</ul>
+<pre class="code">&lt;a href="#content" tabindex="0"&gt;پرش به محتوا&lt;/a&gt;</pre>
+<t>از <m>tabindex</m> با مقادیر بالای <m>0</m> خودداری کنید - این کار باعث سردرگمی می‌شود. بهتر است از ترتیب طبیعی DOM استفاده کنید.</t>
+<h3>11.3.2 Skip Links (لینک‌های پرش): جلوگیری از گم‌شدن در منوی اصلی</h3>
+<t>این لینک‌ها به کاربران کمک می‌کنند تا مستقیماً به محتوای اصلی برسند و از گذر از منوی اصلی جلوگیری کنند.</t>
+<pre class="code">
+&lt;a href="#main-content" class="skip-link"&gt;پرش به محتوای اصلی&lt;/a&gt;
+
+&lt;main id="main-content"&gt;
+ &lt;h1&gt;محتوای اصلی صفحه&lt;/h1&gt;
+ &lt;p&gt;این محتوا بلافاصله بعد از پرش نمایش داده می‌شود.&lt;/p&gt;
+&lt;/main&gt;
+</pre>
+<pre class="code">
+.skip-link {
+ position: absolute;
+ top: -40px;
+ left: 0;
+ background: #000;
+ color: #fff;
+ padding: 8px;
+ text-decoration: none;
+ z-index: 999;
+ }
+      
+.skip-link:focus {
+ top: 0;
+ }
+</pre>
+<t><m>focus</m> برای نمایش لینک وقتی کاربر به آن رسیده است. این لینک فقط در زمان تمرکز نمایش داده می‌شود.</t>
+<h3>11.3.3 گردش در محتوا با کیبورد</h3>
+<h4>11.3.3 گردش در محتوا با کیبورد</h4>
+<ul>
+  <li><m>Tab</m> به عناصر بروند</li>
+  <li><m>Enter</m> روی دکمه‌ها کلیک کنند</li>
+  <li><m>Space</m> روی گزینه‌ها انتخاب کنند</li>
+  <li><m>Arrow Keys</m> در لیست‌ها، منوها، و جداول حرکت کنند</li>
+  <li><m>Esc</m> پنجره‌ها یا مودال‌ها را ببندند</li>
+</ul>
+<pre class="code">
+&lt;ul role="menubar"&gt;
+ &lt;li role="none"&gt;
+  &lt;a href="#" role="menuitem"&gt;منوی اول&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li role="none"&gt;
+  &lt;a href="#" role="menuitem"&gt;منوی دوم&lt;/a&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<t>استفاده از <m>role="menuitem"</m> به <b>Screen Readers</b> کمک می‌کند تا ساختار منو را تشخیص دهد. کلیدهای <m>Enter</m> و <m>Space</m> برای انتخاب گزینه.</t>
+<br><t>یک صفحه وب موفق، فقط با زیبایی ظاهری نیست بلکه <b>با احترام به تمام کاربران، استفاده از ARIA، مدیریت دسترسی با کیبورد، و پایبندی به استانداردهای WCAG</b> ساخته می‌شود. این فصل پایه‌ای برای نوشتن محتوای دسترسی‌پذیر، انسانی و متناسب با استانداردهای جهانی است.</t>
 
 <br><br><hr><br>
 <a href="12.html" class="np" style="float:right;"><img src="../assets/forward.svg" width="14px"> بعدی</a>
 <a href="10.html" class="np" style="float:left;">قبلی <img src="../assets/back.svg" width="14px"></a>
 <br><br>
 
-</div>
-</center>
+</main>
 
-<div class="footer">
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="help.html">راهنما</a>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">نقشه ی سایت</a>
+<footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="tags.html">تگ ها</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../assets/sitemap.xml">نقشه ی سایت</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html">درباره ی ما</a>
 &nbsp;&nbsp;&nbsp;&nbsp;Structure © 2025
-</div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 </body>
 </html>

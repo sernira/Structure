@@ -1,34 +1,387 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Structure</title>
+ <title>فرم‌ها و عناصر ورودی</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+ <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="header"><a href="../index.html" target="_blank">صفحه ی اصلی</a>&nbsp;&nbsp;&nbsp;Structure</div>
+<header><a href="" target="_blank">Structure</a><code>&nbsp;>&nbsp;html</code></header>
 
-<center>
-<div class="text">
+<main>
+<div class="alert">این متن هنوز کامل نیست و در حال بروزرسانی است. نسخه‌ی نهایی پس از تکمیل در دسترس قرار خواهد گرفت.</div>
+<h1>فرم‌ها و عناصر ورودی</h1>
+<t>در توسعه وب مدرن فرم‌ها (Forms) به عنوان یکی از مهم‌ترین ابزارهای <b>تعامل بین کاربر و سیستم، نقش محوری در جمع‌آوری داده، مدیریت ورودی و ایجاد تجربه کاربری مؤثر</b> دارند. این فصل به بررسی جامع و تخصصی ساختار کلی فرم‌ها، انواع عناصر ورودی، اعتبارسنجی داخلی، و بهبود دسترسی‌پذیری در HTML5 می‌پردازد.  
+    هدف این فصل، ایجاد فرم‌های معتبر، هوشمندانه، دسترسی‌پذیر و قابل تنظیم برای تمام دستگاه‌ها است که همچون یک سازه معنایی، خوانایی، عملکرد و امنیت را تضمین می‌کند.</t>
 
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+<br><br><h2>9.1 ساختار کلی تگ فرم: بنیان تعامل کاربری</h2>
+<h3>9.1.1 <m>&lt;form&gt;</m>: عنصر اصلی فرم</h3>
+<t>پایه‌ای برای جمع‌آوری و ارسال داده‌های کاربر.</t><br>
+<table>
+ <tr>
+  <td><m>action</m></td>
+  <td>آدرسی که داده‌ها به آن ارسال می‌شوند (URL)</td>
+ </tr>
+
+ <tr>
+  <td><m>method</m></td>
+  <td>روش ارسال داده‌ها با ویژگی <m>method</m> تعیین می‌شود و معمولاً یکی از مقادیر <m>GET</m> (پیش‌فرض) یا <m>POST</m> است.</td>
+ </tr>
+
+ <tr>
+  <td><m>enctype</m></td>
+  <td>نوع رمزگذاری داده‌های ارسالی با ویژگی <m>enctype</m> مشخص می‌شود و می‌تواند <m>application/x-www-form-urlencoded</m>، <m>multipart/form-data</m> یا <m>text/plain</m> باشد.</td>
+ </tr>
+
+ <tr>
+  <td><m>autocomplete</m></td>
+  <td>ویژگی <m>autocomplete</m> تعیین می‌کند که آیا مرورگر مجاز است فیلدهای فرم را به‌صورت خودکار با اطلاعات قبلی پر کند یا نه؛ مقدار آن <m>on</m> یا <m>off</m> است.</td>
+ </tr>
+
+ <tr>
+  <td><m>novalidate</m></td>
+  <td>برای غیرفعال‌سازی اعتبارسنجی پیش‌فرض مرورگر می‌توان از ویژگی <m>novalidate</m> استفاده کرد تا داده‌ها بدون بررسی ارسال شوند.</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;form 
+ action="/submit" 
+ method="POST" 
+ enctype="multipart/form-data"
+ autocomplete="on"
+ novalidate
+ &gt;
+ &lt;!-- محتوای فرم --&gt;
+&lt;/form&gt;
+</pre>
+<ul>
+  <li><m>method="POST"</m> برای داده‌های حساس (مانند رمز عبور) توصیه می‌شود.</li>
+  <li><m>enctype="multipart/form-data"</m> برای فایل‌های آپلود ضروری است.</li>
+  <li><m>autocomplete="off"</m> در فرم‌های حساس (مثل ورود به سیستم) می‌تواند امنیت را افزایش دهد.</li>
+</ul>
+
+<br><h2>9.2 عناصر ورودی متداول: ورودی‌های پایه‌ای</h2>
+<h3>9.2.1 <m>&lt;input type="..."&gt;</m>: انواع پایه‌ای</h3>
+<table>
+ <tr>
+  <td><m>text</m></td>
+  <td>متن آزاد و معمولی</td>
+  <td>برای دریافت نام، آدرس یا هر نوع داده متنی پایه</td>
+ </tr>
+ <tr>
+  <td><m>email</m></td>
+  <td>ایمیل معتبر</td>
+  <td>برای ورود آدرس ایمیل با اعتبارسنجی خودکار مرورگر</td>
+ </tr>
+ <tr>
+  <td><m>url</m></td>
+  <td>آدرس اینترنتی</td>
+  <td>برای وارد کردن لینک وب‌سایت به‌صورت معتبر</td>
+ </tr>
+ <tr>
+  <td><m>tel</m></td>
+  <td>شماره تلفن</td>
+  <td>برای دریافت شماره تماس بدون فرمت مشخص</td>
+ </tr>
+ <tr>
+  <td><m>number</m></td>
+  <td>مقدار عددی</td>
+  <td>برای اعداد مانند سن، قیمت یا مقدار قابل شمارش</td>
+ </tr>
+ <tr>
+  <td><m>date</m></td>
+  <td>انتخاب تاریخ</td>
+  <td>نمایش تقویم برای انتخاب یک روز مشخص</td>
+ </tr>
+ <tr>
+  <td><m>datetime-local</m></td>
+  <td>تاریخ و زمان</td>
+  <td>انتخاب تاریخ و ساعت بدون ناحیه زمانی (local)</td>
+ </tr>
+ <tr>
+  <td><m>time</m></td>
+  <td>ساعت</td>
+  <td>برای انتخاب مقدار زمان مانند ساعت و دقیقه</td>
+ </tr>
+ <tr>
+  <td><m>month</m></td>
+  <td>ماه</td>
+  <td>برای انتخاب یک ماه و سال (بدون روز)</td>
+ </tr>
+ <tr>
+  <td><m>week</m></td>
+  <td>هفته</td>
+  <td>برای انتخاب هفته خاصی از یک سال</td>
+ </tr>
+ <tr>
+  <td><m>color</m></td>
+  <td>انتخاب رنگ</td>
+  <td>نمایش انتخابگر رنگ برای تنظیمات گرافیکی یا UI</td>
+ </tr>
+ <tr>
+  <td><m>range</m></td>
+  <td>نوار لغزنده</td>
+  <td>برای مقادیر پیوسته مانند میزان صدا یا روشنایی</td>
+ </tr>
+ <tr>
+  <td><m>password</m></td>
+  <td>رمز مخفی</td>
+  <td>ورودی مخفی برای رمز عبور یا اطلاعات محرمانه</td>
+ </tr>
+ <tr>
+  <td><m>search</m></td>
+  <td>ورودی جستجو</td>
+  <td>برای فیلدهای جستجو با ویژگی‌های خاص UX</td>
+ </tr>
+ <tr>
+  <td><m>file</m></td>
+  <td>انتخاب فایل</td>
+  <td>برای آپلود فایل از سیستم کاربر</td>
+ </tr>
+</table>  
+<pre class="code">
+&lt;input type="email" name="email" placeholder="example@domain.com" required&gt;
+&lt;input type="date" name="birthday"&gt;
+&lt;input type="file" name="avatar" accept="image/*"&gt;
+</pre>
+<t>استفاده از <m>type="email"</m> و <m>type="url"</m> به مرورگر کمک می‌کند تا اعتبارسنجی اولیه انجام دهد.</t>
+<t><m>required</m> برای فیلدهای ضروری استفاده می‌شود.</t>
+
+<br><br><h2>9.3 کنترل‌های ورودی پیشرفته: مدیریت داده‌های پیچیده</h2>
+<h3>9.3.1 <m>&lt;textarea&gt;</m>: متن چندخطی</h3>
+<ul>
+  <li>برای ورودی‌های طولانی (مثلاً نظرات، توضیحات).</li>
+  <li>ویژگی‌های کلیدی: <m>rows</m> - <m>cols</m> - <m>placeholder</m> - <m>maxlength</m></li>
+</ul>
+<pre class="code">
+&lt;textarea 
+ name="comment" 
+ rows="5" 
+ cols="60" 
+ placeholder="نظر خود را بنویسید..."
+ maxlength="500"
+&gt;&lt;/textarea&gt;
+</pre>
+<h3>9.3.2 <m>&lt;select&gt;</m> و <m>&lt;option&gt;</m>: لیست انتخابی</h3>
+<t>برای انتخاب یک مقدار از بین گزینه‌ها.</t>
+<pre class="code">
+&lt;select name="country" required&gt;
+ &lt;option value=""&gt;— انتخاب کنید —&lt;/option&gt;
+ &lt;option value="ir"&gt;ایران&lt;/option&gt;
+ &lt;option value="us"&gt;آمریکا&lt;/option&gt;
+ &lt;option value="fr"&gt;فرانسه&lt;/option&gt;
+&lt;/select&gt;
+</pre>
+<t>از <m>required</m> و <m>aria-label</m> برای توضیح لیست استفاده کنید.</t>
+<h3>9.3.3 <m>&lt;optgroup&gt;</m>: گروه‌بندی گزینه‌ها</h3>
+<t>برای گروه‌بندی گزینه‌ها (مثلاً ایالت‌های یک کشور).</t>
+<pre class="code">
+&lt;select name="state"&gt;
+ &lt;optgroup label="ایران"&gt;
+  &lt;option value="tehran"&gt;تهران&lt;/option&gt;
+  &lt;option value="shiraz"&gt;شیراز&lt;/option&gt;
+ &lt;/optgroup&gt;
+ &lt;optgroup label="آمریکا"&gt;
+  &lt;option value="ny"&gt;نیویورک&lt;/option&gt;
+ &lt;/optgroup&gt;
+&lt;/select&gt;
+</pre>
+<h3>9.3.4 <m>&lt;datalist&gt;</m>: لیست پیشنهادی (Autocomplete)</h3>
+<t>لیست گزینه‌های پیشنهادی برای <m>&lt;input&gt;</m>./t>
+<pre class="code">
+&lt;input list="browsers" name="browser"&gt;
+&lt;datalist id="browsers"&gt;
+ &lt;option value="Chrome"&gt;
+ &lt;option value="Firefox"&gt;
+ &lt;option value="Safari"&gt;
+ &lt;option value="Edge"&gt;
+&lt;/datalist&gt;    
+</pre>
+<t>این تگ بدون <m>id</m> و <m>list</m> کار نمی‌کند. استفاده از آن به جای <m>autocomplete</m> در فرم‌های ساده، مفید است.</t>
+<h3>9.3.5 <m>&lt;button&gt;</m>: دکمه فرم</h3>
+<ul>
+  <li>برای ارسال یا ریست فرم.</li>
+  <li>ویژگی‌های کلیدی: <m>type="submit"</m> - <m>type="reset"</m> - <m>type="button"</m>.</li>
+</ul>
+<pre class="code">
+&lt;button type="submit"&gt;ارسال&lt;/button&gt;
+&lt;button type="reset"&gt;ریست&lt;/button&gt;
+&lt;button type="button" onclick="alert('Hello')"&gt;نوشته&lt;/button&gt;
+</pre>
+<h3>9.3.6 <m>&lt;output&gt;</m>: نمایش نتیجه محاسبه</h3>
+<t>برای نمایش خروجی یک فرم (مثلاً مجموع، میانگین).</t>
+<pre class="code">
+&lt;label for="amount"&gt;مبلغ:&lt;/label&gt;
+&lt;input type="number" id="amount" oninput="updateOutput()"&gt;
+&lt;output name="result" for="amount"&gt;0&lt;/output&gt;
+    
+&lt;script&gt;
+function updateOutput() {
+const amount = document.getElementById("amount").value;
+ document.querySelector("output").textContent = amount * 1.1;
+ }
+&lt;/script&gt;
+</pre>
+<h3>9.3.7 <m>&lt;meter&gt;</m> و <m>&lt;progress&gt;</m>: نمایش وضعیت</h3>
+<table>
+ <tr>
+  <td><m>&lt;meter&gt;</m></td>
+  <td>وضعیت کمّی (مثلاً سطح باتری، پردازش)</td>
+ </tr>
+
+ <tr>
+  <td><m>&lt;progress&gt;</m></td>
+  <td>فرآیند پیشرفت (مثلاً آپلود، بارگذاری)</td>
+ </tr>
+</table>
+<pre class="coe">
+&lt;meter min="0" max="100" value="75"&gt;75%&lt;/meter&gt;
+&lt;progress value="50" max="100"&gt;50%&lt;/progress&gt;
+</pre>
+<ul>
+  <li><m>&lt;meter&gt;</m> برای مقادیر ثابت یا نسبی است.</li>
+  <li><m>&lt;progress&gt;</m> برای فرآیندهای در حال انجام.</li>
+</ul>
+
+<br><h2>9.4 اعتبارسنجی فرم در HTML5: امنیت و کیفیت داده</h2>
+<h3>9.4.1 ویژگی‌های اعتبارسنجی داخلی</h3>
+<table>
+ <tr>
+  <td><m>required</m></td>
+  <td>فیلد ضروری</td>
+ </tr>
+
+ <tr>
+  <td><m>pattern</m></td>
+  <td>الگوی متنی (regex)</td>
+ </tr>
+
+ <tr>
+  <td><m>max</m> - <m>min</m></td>
+  <td>حداقل و حداکثر عدد</td>
+ </tr>
+
+ <tr>
+  <td><m>maxlength</m> - <m>minlength</m></td>
+  <td>طول کاراکتر</td>
+ </tr>
+
+ <tr>
+  <td><m>step</m></td>
+  <td>گام عددی مثلا (0.5)</td>
+ </tr>
+
+ <tr>
+  <td><m>disabled</m> - <m>readonly</m></td>
+  <td>فقط خواندنی یا غیرفعال</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;input 
+ type="text" 
+ name="username" 
+ pattern="[a-zA-Z]{3,}" 
+ minlength="3" 
+ maxlength="20" 
+ required
+ title="نام کاربری باید حداقل ۳ حرف باشد."
+&gt;
+</pre>
+<t><m>title</m> به کاربر در صورت خطای اعتبارسنجی راهنمایی می‌کند.</t>
+<br><t><m>pattern</m> با <b>regex</b> کار می‌کند اما باید به دقت تست شود.</t>
+<h3>9.4.2 Constraint Validation API: اعتبارسنجی پیشرفته با JavaScript</h3>
+<t>این API به توسعه‌دهندگان اجازه می‌دهد تا اعتبارسنجی را به صورت برنامه‌نویسی انجام دهند.</t>
+<pre class="code">
+&lt;script&gt;
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+    
+form.addEventListener("submit", function (e) {
+ if (!input.validity.valid) {
+  e.preventDefault();
+  alert("لطفاً فیلد را به درستی پر کنید.");
+  }
+});
+ &lt;/script&gt;
+</pre>
+<ul>
+  <li><m>validity.valid</m> آیا فیلد معتبر است؟</li>
+  <li><m>validity.valueMissing</m> آیا فیلد خالی است؟</li>
+  <li><m>validity.patternMismatch</m> آیا الگوی مطابق است؟</li>
+  <li><m>setCustomValidity()</m> تعیین پیام خطای شخصی</li>
+</ul>
+<pre class="code">&lt;script&gt;input.setCustomValidity("این فیلد الزامی است.");&lt;/script&gt;</pre>
+<t>اعتبارسنجی داخلی HTML5 فقط برای اولین سطح است. اعتبارسنجی پایانی باید با JavaScript و سرور انجام شود.</t>
+
+<br><br><h2>9.5 بهبود دسترسی‌پذیری فرم‌ها: از ساختار به اعتماد</h2>
+<h3>9.5.1 <m>&lt;label&gt;</m>: ارجاع به فیلد</h3>
+<ul>
+  <li>هر فیلد باید دارای <m>&lt;label&gt;</m> باشد.</li>
+  <li>استفاده از <m>for="id"</m> برای ارتباط با <m>id</m> فیلد.</li>
+</ul>
+<pre class="code">
+&lt;label for="email"&gt;ایمیل:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;
+</pre>
+<t><b>Screen Readers</b> از <m>for</m> و <m>id</m> برای خواندن فیلد استفاده می‌کنند.</t>
+<t>اگر فیلد بدون <m>label</m> باشد از <m>aria-label</m> استفاده کنید.</t>
+<h3>9.5.2 ویژگی‌های ARIA برای فرم‌ها</h3>
+<table>
+ <tr>
+  <td><m>aria-label</m></td>
+  <td>توضیح فیلد بدون نمایش</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-labelledby</m></td>
+  <td>ارجاع به یک یا چند عنوان</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-describedby</m></td>
+  <td>توضیحات جانبی</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-invalid</m></td>
+  <td>مشخص کردن خطای فرم</td>
+ </tr>
+
+ <tr>
+  <td><m>aria-required</m></td>
+  <td>مشخص کردن فیلد ضروری</td>
+ </tr>
+</table>
+<pre class="code">
+&lt;input 
+ type="email" 
+ aria-label="ایمیل کاربر" 
+ aria-invalid="true" 
+ aria-describedby="error-email"
+ &gt;
+&lt;p id="error-email"&gt;ایمیل وارد شده معتبر نیست.&lt;/p&gt;
+</pre>
+<t>استفاده از <m>aria-invalid</m> و <m>aria-describedby</m> به ابزارهای دسترسی کمک می‌کند تا خطاهای فرم را به درستی اعلام کنند.</t>
+<br><t>یک فرم موفق فقط با ظاهر زیبا نیست بلکه با <b>ساختار معنایی منظم، اعتبارسنجی هوشمندانه، و دسترسی‌پذیری بالا</b> ساخته می‌شود. این فصل پایه‌ای برای نوشتن محتوای تعاملی معتبر، دسترسی‌پذیر و متناسب با استانداردهای جهانی است.</t>
 
 <br><br><hr><br>
 <a href="10.html" class="np" style="float:right;"><img src="../assets/forward.svg" width="14px"> بعدی</a>
 <a href="8.html" class="np" style="float:left;">قبلی <img src="../assets/back.svg" width="14px"></a>
 <br><br>
 
-</div>
-</center>
+</main>
 
-<div class="footer">
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="help.html">راهنما</a>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">نقشه ی سایت</a>
+<footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="tags.html">تگ ها</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../assets/sitemap.xml">نقشه ی سایت</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html">درباره ی ما</a>
 &nbsp;&nbsp;&nbsp;&nbsp;Structure © 2025
-</div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 </body>
 </html>

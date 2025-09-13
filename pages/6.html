@@ -1,34 +1,189 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Structure</title>
+ <title>تصاویر و رسانه‌های چندرسانه‌ای</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+ <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="header"><a href="../index.html" target="_blank">صفحه ی اصلی</a>&nbsp;&nbsp;&nbsp;Structure</div>
+<header><a href="" target="_blank">Structure</a><code>&nbsp;>&nbsp;html</code></header>
 
-<center>
-<div class="text">
+<main>
+<div class="alert">این متن هنوز کامل نیست و در حال بروزرسانی است. نسخه‌ی نهایی پس از تکمیل در دسترس قرار خواهد گرفت.</div>
+<h1>تصاویر و رسانه‌های چندرسانه‌ای</h1>
+<t>در عصر داده‌های بزرگ و تجربه کاربری بالا، نمایش مؤثر، سریع و سازگار با تمام دستگاه‌ها از تصاویر، صوت و ویدئو، به عنوان یکی از مهم‌ترین اصول توسعه وب مدرن مطرح می‌شود. این فصل به بررسی جامع و تخصصی عناصر چندرسانه‌ای در HTML5 می‌پردازد که شامل <b>نمایش تصاویر هوشمندانه، پخش صوت و ویدئو با قابلیت تنظیم، و پشتیبانی از گرافیک برداری و ترسیمی</b> است. این ابزارها نه تنها به افزایش خوانایی و جذابیت محتوا کمک می‌کنند بلکه بهینه‌سازی عملکرد، دسترسی‌پذیری و سازگاری با محیط‌های مختلف را نیز تضمین می‌نمایند.</t>
 
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+<br><br><h2>6.1 نمایش و بهینه‌سازی تصاویر: از ساختار تا عملکرد</h2>
+<h3>6.1.1 <m>&lt;img&gt;</m>: عنصر اصلی نمایش تصویر</h3>
+<t>این عنسر برای نمایش تصاویر در صفحات وب استفاده می شود.</t>
+<ul>
+  <li><m>src</m>: مسیر فایل تصویر (ضروری)</li>
+  <li><m>alt</m>: متن جایگزین (ضروری برای دسترسی‌پذیری)</li>
+  <li><m>loading</m>: نحوه بارگذاری (lazy, eager)</li>
+  <li><m>decoding</m>: روش دécoding (sync, async, auto)</li>
+  <li><m>sizes</m> و <m>srcset</m>: برای تصاویر واکنش‌گرا</li>
+</ul>
+<pre class="code">
+&lt;img 
+ src="hero.jpg" 
+ alt="تصویر معرفی دوره آموزشی برنامه‌نویسی"
+ loading="lazy"
+ decoding="async"
+ srcset="hero-small.jpg 480w, hero-medium.jpg 800w, hero-large.jpg 1200w"
+ sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+ /&gt;
+</pre>
+<t><m>alt</m> باید مختصر دقیق و معنایی باشد. اگر تصویر توصیفی باشد، مثلا <b>آدم در حال کدنویسی</b> اما اگر تبلیغاتی یا بدون محتوا باشد <m>alt=""</m> استفاده شود.</t>
+<t><m>loading="lazy"</m> باعث می‌شود تصاویر فقط هنگام نزدیک شدن به <b>ناحیه دید (viewport)</b> بارگذاری شوند - این امر به کاهش مصرف باند و بهبود <b>LCP</b> کمک می‌کند.</t>
+<h3>6.1.2 ***picture*** و ***source***: تصاویر واکنش‌گرا (Responsive Images)</h3>
+<ul>
+  <li><m>&lt;source&gt;</m> می‌تواند شامل <m>media</m> - <m>type</m> - <m>sizes</m> - <m>srcset</m> باشد.</li>
+  <li><m>&lt;img&gt;</m> در آخر قرار می‌گیرد به عنوان فایل پیش‌فرض</li>
+</ul>
+<pre class="code">
+&lt;picture&gt;
+ &lt;source media="(max-width: 768px)" srcset="mobile-hero.webp" type="image/webp"&gt;
+ &lt;source media="(max-width: 768px)" srcset="mobile-hero.jpg"&gt;
+ &lt;source media="(min-width: 769px)" srcset="desktop-hero.webp" type="image/webp"&gt;
+ &lt;source media="(min-width: 769px)" srcset="desktop-hero.jpg"&gt;
+ &lt;img 
+  src="desktop-hero.jpg" 
+  alt="عنوان دوره آموزشی"
+  loading="lazy"
+  decoding="async"
+ /&gt;
+&lt;/picture&gt;
+</pre>
+<t>استفاده از <b>WebP</b> به جای JPG/PNG به دلیل فشرده‌سازی بالا و کیفیت بهتر توصیه می‌شود.</t>
+<t>از <m>type="image/webp"</m> برای مشخص کردن فرمت استفاده کنید.</t>
+<t>اگر مرورگر <b>WebP</b> پشتیبانی نکند تصویر JPG به صورت خودکار بارگذاری می‌شود.</t>
+<h3>6.1.3 بهینه‌سازی عملکرد: پیش‌بارگذاری و مدیریت بار</h3>
+<ul>
+  <li>استفاده از <m>loading="lazy"</m> برای تصاویر غیرضروری.</li>
+  <li>استفاده از <m>srcset</m> و <m>sizes</m> برای بارگذاری تصویر مناسب به اندازه دستگاه.</li>
+  <li>از <m>decoding="async"</m> برای کاهش تأخیر در تحلیل تصویر استفاده کنید.</li>
+</ul>
+<t>تصاویر بزرگ بدون <m>srcset</m> و <m>sizes</m> می‌توانند مصرف باند را ۲–۳ برابر افزایش دهند.</t>
+<t>استفاده از <m>loading="lazy"</m> می‌تواند زمان بارگذاری اولیه صفحه را تا ۴۰٪ کاهش دهد.</t>
+
+<br><br><h2>6.2 صوت و ویدئو در صفحات وب: پخش هوشمندانه و قابلیت تنظیم</h2>
+<h3>6.2.1 <m>&lt;video&gt;</m>: پخش ویدئو در صفحه</h3>
+<t>این عنصر برای نمایش ویدئوهای داخلی یا خارجی استفاده می‌شود.</t>
+<ul>
+  <li><m>controls</m>: نمایش کنترل‌های پخش (پیش‌فرض: true)</li>
+  <li><m>autoplay</m>: شروع خودکار (باید با muted همراه باشد)</li>
+  <li><m>loop</m>: تکرار</li>
+  <li><m>poster</m>: تصویر پیش‌نمایش</li>
+  <li><m>preload</m>: <m>none</m> - <m>metadata</m> - <m>auto</m></li>
+  <li><m>playsinline</m>: پخش در صفحه بدون پنجره کامل</li>
+</ul>
+<pre class="code">
+&lt;video 
+ controls 
+ autoplay 
+ muted 
+ loop 
+ poster="preview.jpg"
+ preload="metadata"
+ playsinline
+ &gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+  &lt;track kind="captions" src="subtitles.vtt" srclang="fa" label="زیرنویس فارسی"&gt;
+  &lt;p&gt;مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.&lt;/p&gt;
+&lt;/video&gt;
+</pre>
+<t><m>autoplay</m> فقط با <m>muted</m> مجاز است. استفاده از <m>autoplay</m> بدون صدای مسدود شده می‌تواند به عنوان <b>"تبلیغات مزاحم"</b> شناخته شود.</t>
+<h3>6.2.2 <m>&lt;audio&gt;</m>: پخش صوت</h3>
+<ul>
+  <li>مشابه <m>&lt;video&gt;</m> اما برای فایل‌های صوتی.</li>
+  <li>ویژگی‌های مشابه: <m>controls</m> - <m>autoplay</m> - <m>loop</m> - <m>preload</m> - <m>poster</m> (در صورت وجود).</li>
+</ul>
+<pre class="code">
+&lt;audio controls preload="metadata"&gt;
+ &lt;source src="podcast.mp3" type="audio/mpeg"&gt;
+ &lt;source src="podcast.ogg" type="audio/ogg"&gt;
+ &lt;p&gt;مرورگر شما از پخش صوت پشتیبانی نمی‌کند.&lt;/p&gt;
+&lt;/audio&gt;
+</pre>
+<h3>6.2.3 <m>&lt;track&gt;</m>: زیرنویس و ردیف‌های مرتبط</h3>
+<t>این عنصر برای اضافه کردن زیرنویس، توضیحات، یا ردیف‌های تفسیری به ویدئو / صوت استفاده می‌شود.</t>
+<ul>
+  <li><m>kind</m>: <m>captions</m> - <m>subtitles</m> - <m>descriptions</m> - <m>chapters</m> - <m>metadata</m></li>
+  <li><m>srclang</m>: زبان فایل زیرنویس</li>
+  <li><m>label</m>: نام نمایشی زیرنویس</li>
+  <li><m>src</m>: مسیر فایل زیرنویس (معمولاً .vtt)</li>
+</ul>
+<pre class="code">
+&lt;track 
+ kind="captions" 
+ src="subtitles-fa.vtt" 
+ srclang="fa" 
+ label="زیرنویس فارسی"
+ default
+/&gt;
+</pre>
+<t>زیرنویس‌های فارسی با <m>srclang="fa"</m> و <m>label</m> مناسب به کاربران نابینا و گفتاری کمک می‌کنند.</t>
+
+<br><br><h2>6.3 گرافیک برداری و گرافیک پیکسلی: از SVG تا Canvas</h2>
+<h3>6.3.1 گرافیک برداری با <m>&lt;svg&gt;</m></h3>
+<t><m>&lt;svg&gt;</m> برای نمایش گرافیک‌های برداری <b>Vector Graphics</b> استفاده می‌شود.</t>
+<ul>
+  <li>مقیاس‌پذیر بدون از دست دادن کیفیت</li>
+  <li>فایل‌های کوچک‌تر</li>
+  <li>قابلیت تغییر رنگ، انیمیشن و تعامل با CSS/JS</li>
+  <li>می‌تواند به صورت داخلی (inline) یا خارجی (embedded) استفاده شود.</li>
+</ul>
+<pre class="code">
+&lt;svg width="100" height="100" viewBox="0 0 100 100"&gt;
+ &lt;circle cx="50" cy="50" r="40" fill="#3498db" /&gt;
+ &lt;text x="50" y="55" text-anchor="middle" fill="white" font-size="12"&gt;SVG&lt;/text&gt;
+&lt;/svg&gt;
+</pre>
+<t>برای آیکون‌ها از <m>&lt;svg&gt;</m> داخلی استفاده کنید تا از کاهش تعداد درخواست‌های HTTP جلوگیری شود.</t>
+<br><t>از <b>viewBox</b> برای نمایش صحیح گرافیک در دستگاه‌های مختلف استفاده کنید.</t>
+<h3>6.3.2 گرافیک ترسیمی با <m>&lt;canvas&gt;</m></h3>
+<t><m>&lt;canvas&gt;</m> یک فضای ترسیمی پیکسلی است که با JavaScript کنترل می‌شود.</t>
+<ul>
+  <li>مناسب برای انیمیشن، بازی‌های وب، تحلیل داده و گرافیک پیچیده</li>
+  <li>عملکرد بالا در محیط‌های پویا</li>
+  <li><m>&lt;canvas&gt;</m> بدون محتوای <b>جایگزین (fallback)</b> غیرقابل دسترسی است.</li>
+</ul>
+<pre class="code">
+&lt;canvas id="myCanvas" width="400" height="300"&gt;
+ &lt;p&gt;مرورگر شما از &lt;code&gt;&lt;canvas&gt;&lt;/code&gt; پشتیبانی نمی‌کند.&lt;/p&gt;
+&lt;/canvas&gt;
+  
+&lt;script&gt;
+ const canvas = document.getElementById('myCanvas');
+ const ctx = canvas.getContext('2d');
+ ctx.fillStyle = '#e74c3c';
+ ctx.fillRect(50, 50, 200, 100);
+&lt;/script&gt;
+</pre>
+<t>همیشه یک محتوای <b>جایگزین (fallback)</b> درون <m>&lt;canvas&gt;</m> قرار دهید.</t>
+<t>اگر JS غیرفعال باشد محتوای جایگزین نمایش داده می‌شود.</t>
+<t>اگر مرورگر <m>Canvas</m> پشتیبانی نکند متن یا تصویر جایگزین به کاربر نمایش داده می‌شود.</t>
+<br><t>یک صفحه وب موفق فقط با زیبایی ظاهری نیست بلکه با <b>استفاده هوشمندانه از رسانه‌ها، بهینه‌سازی عملکرد، و مدیریت چندرسانه‌ای به صورت معنایی و دسترسی‌پذیر</b> ساخته می‌شود. این فصل پایه‌ای برای نوشتن محتوای چندرسانه‌ای معتبر، سریع و متناسب با استانداردهای جهانی است.</t>
 
 <br><br><hr><br>
 <a href="7.html" class="np" style="float:right;"><img src="../assets/forward.svg" width="14px"> بعدی</a>
 <a href="5.html" class="np" style="float:left;">قبلی <img src="../assets/back.svg" width="14px"></a>
 <br><br>
 
-</div>
-</center>
+</main>
 
-<div class="footer">
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="help.html">راهنما</a>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">نقشه ی سایت</a>
+<footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="tags.html">تگ ها</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../assets/sitemap.xml">نقشه ی سایت</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html">درباره ی ما</a>
 &nbsp;&nbsp;&nbsp;&nbsp;Structure © 2025
-</div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
 </body>
 </html>
